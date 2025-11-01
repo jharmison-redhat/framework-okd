@@ -1,0 +1,3 @@
+createVolumegroups:
+  storage:
+    - /dev/disk/by-id/nvme-eui.000000000000000100a07524485ac71d

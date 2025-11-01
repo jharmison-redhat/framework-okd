@@ -1,0 +1,28 @@
+topolvm:
+  enabled: true
+  storageClasses:
+    - name: topolvm
+      storageClass:
+        fsType: xfs
+        reclaimPolicy: Delete
+        annotations: {}
+        isDefaultClass: true
+        volumeBindingMode: Immediate
+        allowVolumeExpansion: true
+        additionalParameters:
+          topolvm.io/device-class: ssd
+        mountOptions: []
+  lvmd:
+    managed: true
+    socketName: /run/topolvm/lvmd.sock
+    deviceClasses:
+      - name: ssd
+        volume-group: storage
+        default: true
+        spare-gb: 10
+
+openshiftToolsImage: quay.io/okd/scos-content@sha256:c2b4b0c530141ae896727b170ecdd4e00a41b850aa7bbe963c0bf896e2e5f3c3
+
+createVolumegroups:
+  storage:
+    - /dev/sda # replace with your disks for the storage vg

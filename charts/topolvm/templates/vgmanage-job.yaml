@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: manage-volumegroups
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: manage-volumegroups
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:privileged
+subjects:
+  - kind: ServiceAccount
+    name: manage-volumegroups
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: manage-volumegroups
+data:
+{{ (.Files.Glob "files/manage-volumegroups/*").AsConfig | indent 2 }}
+{{- range $vg, $disks := .Values.createVolumegroups }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: manage-{{ $vg }}-volumegroup
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      serviceAccountName: manage-volumegroups
+      restartPolicy: Never
+      hostIPC: true
+      hostNetwork: true
+      hostPID: true
+      containers:
+        - name: manage-volumegroups
+          image: {{ $.Values.openshiftToolsImage }}
+          imagePullPolicy: IfNotPresent
+          command: ["/mnt/manage-volumegroups.sh"]
+          securityContext:
+            privileged: true
+            runAsUser: 0
+          args:
+            - {{ $vg | quote }}
+            {{- toYaml $disks | nindent 12 }}
+          volumeMounts:
+            - name: manage-volumegroups-script
+              mountPath: /mnt
+            - name: host
+              mountPath: /host
+      volumes:
+        - name: manage-volumegroups-script
+          configMap:
+            name: manage-volumegroups
+            defaultMode: 493
+        - name: host
+          hostPath:
+            path: /
+            type: Directory
+{{- end }}

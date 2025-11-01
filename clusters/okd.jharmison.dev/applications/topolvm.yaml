@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: topolvm
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  destination:
+    name: in-cluster
+    namespace: topolvm-system
+  project: default
+  source:
+    path: charts/topolvm
+    repoURL: git@github.com:jharmison-redhat/framework-okd.git
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - ../../clusters/okd.jharmison.dev/values/topolvm/values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: argocd
+        topolvm.io/webhook: ignore

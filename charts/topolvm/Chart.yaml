@@ -1,0 +1,13 @@
+---
+apiVersion: v2
+name: topolvm
+description: >
+  A helm chart to deploy and configure TopoLVM
+type: application
+version: 0.1.0
+
+dependencies:
+  - name: topolvm
+    version: 15.7.0
+    repository: https://topolvm.github.io/topolvm
+    condition: topolvm.enabled
