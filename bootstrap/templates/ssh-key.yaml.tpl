@@ -5,7 +5,7 @@ metadata:
   name: git-repo
   namespace: argocd
   labels:
-    argocd.argoproj.io/secret-type: repository
+    argocd.argoproj.io/secret-type: repo-creds
 type: Opaque
 data:
   type: Z2l0
