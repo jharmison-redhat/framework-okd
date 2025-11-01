@@ -17,7 +17,7 @@ spec:
     targetRevision: HEAD
     helm:
       valueFiles:
-        - clusters/okd.jharmison.dev/values/oauth/values.yaml
+        - ../../clusters/okd.jharmison.dev/values/oauth/values.yaml
         - secrets+age-import:///helm-secrets-private-keys/argo.txt?../../clusters/okd.jharmison.dev/values/oauth/secrets.enc.yaml
   syncPolicy:
     automated:
