@@ -15,8 +15,8 @@ spec:
     path: charts/cert-manager
     repoURL: git@github.com:jharmison-redhat/framework-okd.git
     targetRevision: HEAD
-    helm:
-      valueFiles: []
+#    helm:
+#      valueFiles:
 #        - ../../clusters/okd.jharmison.dev/values/cert-manager/values.yaml
 #        - secrets+age-import:///helm-secrets-private-keys/argo.txt?../../clusters/okd.jharmison.dev/values/cert-manager/secrets.enc.yaml
   syncPolicy:
