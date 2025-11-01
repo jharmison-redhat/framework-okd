@@ -1,5 +1,7 @@
 ---
-channel: stable
+cert-manager:
+  enabled: true
+
 acme: {}
 # zerossl:
 #   server: https://acme.zerossl.com/v2/DV90
