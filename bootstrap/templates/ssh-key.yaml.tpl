@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: git-repo
-  namespace: openshift-gitops
+  namespace: argocd
   labels:
     argocd.argoproj.io/secret-type: repository
 type: Opaque

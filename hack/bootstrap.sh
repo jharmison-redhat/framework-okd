@@ -51,7 +51,7 @@ function concat_with_comma {
 	echo "$*"
 }
 function oc {
-  KUBECONFIG="${INSTALL_DIR}/auth/kubeconfig" "${INSTALL_DIR}/oc" "${@}"
+  KUBECONFIG="${INSTALL_DIR}/auth/kubeconfig" "${INSTALL_DIR}/oc" --insecure-skip-tls-verify=true "${@}"
 }
 
 if ! argo_ssh_validate; then
