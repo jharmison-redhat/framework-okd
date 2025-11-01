@@ -68,9 +68,9 @@ certificates:
   clusterIssuer: zerossl
 # clusterIssuer: letsencrypt
   api:
-    managed: false
+    managed: true
   router:
-    managed: false
+    managed: true
   nlbRouter:
     managed: false
 
