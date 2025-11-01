@@ -1,0 +1,67 @@
+---
+channel: stable
+acme: {}
+# zerossl:
+#   server: https://acme.zerossl.com/v2/DV90
+#   email: <put your email here>
+#   externalAccountBinding:
+#     keyID: <put your ZeroSSL EAB key here>
+#     keySecretRef:
+#       name: acme-zerossl-eabsecret
+#       key: secret
+#     keyAlgorithm: HS256
+#   solvers:
+#     - type: dns
+#       dnsConfig:
+#         route53:
+#           accessKeyID: <put your AWS Access Key ID here>
+#           hostedZoneID: <put your Hosted Zone ID here>
+#           region: us-east-2
+#           secretAccessKeySecretRef:
+#             key: secret-access-key
+#             name: acme-zerossl-route53-creds
+#       dnsZones:
+#         - <put your baseDomain here>
+#   secrets:
+#     - name: route53-creds
+#       stringData:
+#         secret-access-key: <put your actual key here>
+#     - name: eabsecret
+#       stringData:
+#         secret: <put your actual HMAC key here>
+# letsencrypt:
+#   server: https://acme-v02.api.letsencrypt.org/directory
+#   email: <your email address here>
+#   disableAccountKeyGeneration: true
+#   privateKeySecretRef:
+#     name: letsencrypt-private-key
+#   solvers:
+#     - type: dns
+#       dnsConfig:
+#         route53:
+#           accessKeyID: <put your AWS Access Key ID here>
+#           hostedZoneID: <put your Hosted Zone ID here>
+#           region: us-west-2
+#           secretAccessKeySecretRef:
+#             key: secret-access-key
+#             name: acme-letsencrypt-route53-creds
+#       dnsZones:
+#         - <put your baseDomain here>
+#   secrets:
+#     - name: route53-creds
+#       stringData:
+#         secret-access-key: <put your actual key here>
+
+certificates:
+  clusterIssuer: zerossl
+# clusterIssuer: letsencrypt
+  api:
+    managed: false
+  router:
+    managed: false
+  nlbRouter:
+    managed: false
+
+cluster:
+  name: cluster
+  baseDomain: domain.com
