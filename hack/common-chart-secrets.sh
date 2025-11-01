@@ -157,7 +157,12 @@ function rekey {
 }
 
 function secrets_files {
-    find "${CLUSTER_DIR}" -maxdepth 2 -type f \
+    find "${CLUSTER_DIR}" -mindepth 3 -maxdepth 3 -type f \
+        \( -name secrets.yaml -o -name secrets.yml \) \
+        -print0
+}
+function secrets_encrypted_files {
+    find "${CLUSTER_DIR}" -mindepth 3 -maxdepth 3 -type f \
         \( -name secrets.enc.yaml -o -name secrets.enc.yml \) \
         -print0
 }

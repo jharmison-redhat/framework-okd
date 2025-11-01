@@ -1,0 +1,27 @@
+---
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  identityProviders:
+    {{- range $provider, $config := .Values.providers }}
+    {{- if $config }}
+    - name: {{ $provider }}
+      mappingMethod: {{ $config.mappingMethod | default $.Values.mappingMethod }}
+      {{- if eq $provider "github" }}
+      type: GitHub
+      github:
+        clientID: {{ $config.clientId }}
+        clientSecret:
+          name: github-oauth-app
+        organizations:
+          {{- toYaml $config.organizations | nindent 10 }}
+      {{- else if eq $provider "htpasswd" }}
+      type: HTPasswd
+      htpasswd:
+        fileData:
+          name: htpass-secret
+      {{- end }}
+    {{- end }}
+    {{- end }}

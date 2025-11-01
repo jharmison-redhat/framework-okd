@@ -35,6 +35,15 @@ $(INSTALL_DIR)/id_ed25519:
 $(INSTALL_DIR)/bootstrap/kustomization.yaml: bootstrap/kustomization.yaml
 	cp -r bootstrap $(INSTALL_DIR)/
 
+.PHONY: tools
+tools:
+	# Prints the tools image reference for the installed release
+	@hack/tools-image.sh
+
+.PHONY: encrypt
+encrypt:
+	@hack/encrypt-chart-secrets.sh
+
 .PHONY: clean
 clean:
 	rm -rf $(INSTALL_DIR)

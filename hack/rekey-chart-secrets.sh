@@ -5,4 +5,4 @@
 # rekey if necessary
 while read -rd $'\0' ct; do
 	rekey "$ct"
-done < <(secrets_files)
+done < <(secrets_encrypted_files)

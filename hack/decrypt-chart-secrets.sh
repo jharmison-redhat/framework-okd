@@ -4,4 +4,4 @@
 
 while read -rd $'\0' ct; do
     decrypt "$ct"
-done < <(secrets_files)
+done < <(secrets_encrypted_files)

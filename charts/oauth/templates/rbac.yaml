@@ -1,0 +1,65 @@
+{{- with .Values.clusterReaders }}
+---
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: cluster-readers
+users:
+  {{- toYaml . | nindent 2 }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-readers
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-reader
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: cluster-readers
+{{- end }}
+{{- with .Values.admins }}
+---
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: cluster-admins
+users:
+  {{- toYaml . | nindent 2 }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-admins
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: cluster-admins
+{{- end }}
+{{- if .Values.removeDefaultSelfProvisioner }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: self-provisioners
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: self-provisioner
+{{- if .Values.selfProvisioners }}
+subjects:
+{{- range .Values.selfProvisioners }}
+- apiGroup: {{ .apiGroup | default "rbac.authorization.k8s.io" }}
+  kind: {{ .kind | default "User" }}
+  name: {{ .name }}
+{{- end }}
+{{- else }}
+subjects: []
+{{- end }}
+{{- end }}

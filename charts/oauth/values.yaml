@@ -1,0 +1,35 @@
+---
+providers:
+  htpasswd:
+    ## You can just put username/password here, they will generate once and never update
+    admin: openshift
+    developer: openshift
+    ## If you put htpasswd in this array, all other fields are ignored
+#   htpasswd: |-
+#     admin:$2a$10$WFVlLRXkUTKAZNfqM68DSO8trAopkE9.qwJSzoOOcYj25dXyDFTbC
+## Alternatively, you can set `htpasswd` to `null` and use github
+# github:
+#   organizations:
+#     - <your GH org name goes here>
+#   clientId: <your client ID goes here>
+#   clientSecret: <your client secret goes here>
+admins:
+  - admin
+
+clusterReaders: []
+## You can add users to the array here to grant cluster-wide reader privileges,
+# which doesn't include reading secrets
+#  - developer
+
+selfProvisioners: []
+## It may make sense to add specific users here, if you disable the default self-provisioner
+#  - kind: User
+#    name: developer
+
+mappingMethod: claim
+
+removeKubeAdmin: true
+
+removeDefaultSelfProvisioner: false
+
+openshiftToolsImage: quay.io/okd/scos-content@sha256:c2b4b0c530141ae896727b170ecdd4e00a41b850aa7bbe963c0bf896e2e5f3c3
