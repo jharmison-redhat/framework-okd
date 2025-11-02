@@ -16,7 +16,7 @@ spec:
     repoURL: https://github.com/rh-aiservices-bu/vllm-quickstart
     targetRevision: HEAD
     helm:
-      valuesFiles:
+      valueFiles:
         - $values/clusters/okd.jharmison.dev/values/chat/values.yaml
   - repoURL: git@github.com:jharmison-redhat/framework-okd.git
     targetRevision: HEAD
