@@ -1,0 +1,8 @@
+controllerManager:
+  manager:
+    image:
+      tag: v1.4.0
+kmm:
+  enabled: false
+nfd:
+  enabled: false

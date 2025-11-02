@@ -11,20 +11,16 @@ spec:
     name: in-cluster
     namespace: amd-gpu-operator
   project: default
-  source:
-    path: helm-charts-openshift
+  sources:
+  - path: helm-charts-openshift
     repoURL: https://github.com/ROCm/gpu-operator
     targetRevision: 4863659a11495de990b62e4a1ba92ef27aa038fc
     helm:
-      valuesObject:
-        controllerManager:
-          manager:
-            image:
-              tag: v1.4.0
-        kmm:
-          enabled: false
-        nfd:
-          enabled: false
+      valueFiles:
+        - $values/clusters/okd.jharmison.dev/values/amd-gpu-operator/values.yaml
+  - repoURL: git@github.com:jharmison-redhat/framework-okd.git
+    targetRevision: HEAD
+    ref: values
   syncPolicy:
     automated:
       prune: true
