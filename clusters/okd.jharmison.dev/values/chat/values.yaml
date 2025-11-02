@@ -4,7 +4,7 @@ vllm:
     repository: hyoon11/vllm-dev
     tag: 20251031_20_py3.12_torch2.8_triton3.4_navi_upstream_5438967_ubuntu24.04_env
   configuration:
-    modelReference: RedHatAI/Mistral-Small-3.1-24B-Instruct-2503-FP8-dynamic
+    modelReference: RedHatAI/Mistral-Small-3.1-24B-Instruct-2503-quantized.w4a16
     modelStorage:
       size: 40Gi
     env:
