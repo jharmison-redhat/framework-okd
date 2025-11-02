@@ -7,7 +7,7 @@ vllm:
     modelReference: unsloth/gpt-oss-20b-FB16
     modelStorage:
       size: 40Gi
-    args:
+    extraArgs:
       - --dtype=bfloat16
       - --enforce-eager
       - --disable-custom-all-reduce
