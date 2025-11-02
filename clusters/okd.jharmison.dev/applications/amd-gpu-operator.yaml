@@ -13,8 +13,8 @@ spec:
   project: default
   source:
     path: helm-charts-openshift
-    repoURL: https://github.com/ROCm/gpu-operator
-    targetRevision: 4863659a11495de990b62e4a1ba92ef27aa038fc
+    repoURL: https://github.com/jharmison-redhat/amd-gpu-operator
+    targetRevision: 215cd60e2c3d9ff93a76a34367fd611fbde4ebce
     helm:
       valuesObject:
         controllerManager:
