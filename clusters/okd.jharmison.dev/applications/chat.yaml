@@ -11,35 +11,16 @@ spec:
     name: in-cluster
     namespace: vllm
   project: default
-  source:
-    path: charts/chat
+  sources:
+  - path: charts/chat
     repoURL: https://github.com/rh-aiservices-bu/vllm-quickstart
     targetRevision: HEAD
     helm:
-      values: |
-        vllm:
-          image:
-            registry: docker.io
-            repository: hyoon11/vllm-dev
-            tag: 20251031_20_py3.12_torch2.8_triton3.4_navi_upstream_5438967_ubuntu24.04_env
-          configuration:
-            modelReference: RedHatAI/gpt-oss-20b
-            modelStorage:
-              size: 40Gi
-            env:
-              TRITON_CACHE_DIR: /opt/app-root/src/.cache/triton
-          tolerations: []
-          resources:
-            limits:
-              cpu: 6
-              memory: 16Gi
-              amd.com/gpu: 1
-              nvidia.com/gpu: null
-            requests:
-              cpu: 2
-              memory: 12Gi
-              amd.com/gpu: 1
-              nvidia.com/gpu: null
+      valuesFiles:
+        - $values/clusters/okd.jharmison.dev/values/chat/values.yaml
+  - repoURL: git@github.com:jharmison-redhat/framework-okd.git
+    targetRevision: HEAD
+    ref: values
   syncPolicy:
     automated:
       prune: true
