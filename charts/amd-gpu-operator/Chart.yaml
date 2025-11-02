@@ -1,0 +1,13 @@
+---
+apiVersion: v2
+name: amd-gpu-operator
+description: >
+  A helm chart to deploy and configure the AMD GPU Operator
+type: application
+version: 0.1.0
+
+dependencies:
+  - name: gpu-operator-charts
+    version: v1.4.0
+    repository: https://rocm.github.io/gpu-operator
+    condition: gpu-operator-charts.enabled
