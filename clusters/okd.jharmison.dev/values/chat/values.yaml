@@ -4,7 +4,7 @@ vllm:
     repository: cnuland/vllm-gfx1151
     tag: rocm71_gfx115x
   configuration:
-    modelReference: unsloth/gpt-oss-20b-FB16
+    modelReference: unsloth/gpt-oss-20b-BF16
     modelStorage:
       size: 40Gi
     extraArgs:
