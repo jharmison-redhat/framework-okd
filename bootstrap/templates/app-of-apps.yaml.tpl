@@ -24,3 +24,4 @@ spec:
       kind: Application
       jsonPointers:
         - /spec/syncPolicy/automated
+        - /metadata/finalizers
