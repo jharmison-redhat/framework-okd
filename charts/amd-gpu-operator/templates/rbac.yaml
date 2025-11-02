@@ -8,4 +8,4 @@ roleRef:
   name: system:openshift:scc:privileged
 subjects:
   - kind: ServiceAccount
-    name: {{ .Release.name }}-node-feature-discovery-worker
+    name: {{ .Release.Name }}-node-feature-discovery-worker
