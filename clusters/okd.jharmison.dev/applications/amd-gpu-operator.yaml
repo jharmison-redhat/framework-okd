@@ -21,6 +21,17 @@ spec:
           manager:
             image:
               tag: v1.4.0
+  ignoreDifferences:
+    - group: ""
+      kind: ConfigMap
+      name: amd-gpu-operator-kmm-cluster-ca
+      jsonPointers:
+        - /data
+    - group: ""
+      kind: ConfigMap
+      name: amd-gpu-operator-kmm-service-ca
+      jsonPointers:
+        - /data
   syncPolicy:
     automated:
       prune: true
