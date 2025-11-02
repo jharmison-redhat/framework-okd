@@ -29,4 +29,4 @@ openshiftToolsImage: quay.io/okd/scos-content@sha256:c2b4b0c530141ae896727b170ec
 
 createVolumegroups:
   storage:
-    - /dev/sda # replace with your disks for the storage vg
+    - /dev/sdb # replace with your disks for the storage vg
