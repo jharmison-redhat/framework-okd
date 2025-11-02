@@ -1,5 +1,9 @@
 topolvm:
   enabled: true
+  controller:
+    replicaCount: 1
+    securityContext:
+      enabled: false
   storageClasses:
     - name: topolvm
       storageClass:
