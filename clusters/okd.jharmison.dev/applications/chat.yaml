@@ -1,0 +1,48 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chat
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "9"
+spec:
+  destination:
+    name: in-cluster
+    namespace: vllm
+  project: default
+  source:
+    path: charts/chat
+    repoURL: https://github.com/rh-aiservices-bu/vllm-quickstart
+    targetRevision: cee5a96d0ca65d9a9ab209253627905bcfaaf4b8
+    helm:
+      valuesObject:
+        vllm:
+          image:
+            registry: docker.io
+            repository: hyoon11/vllm-dev
+            tag: 20251031_20_py3.12_torch2.8_triton3.4_navi_upstream_5438967_ubuntu24.04_env
+          configuration:
+            env:
+              TRITON_CACHE_DIR: /opt/app-root/src/.cache/triton
+          tolerations: []
+          resources:
+            limits:
+              cpu: 6
+              memory: 16Gi
+              amd.com/gpu: 1
+              nvidia.com/gpu: null
+            requests:
+              cpu: 2
+              memory: 12Gi
+              amd.com/gpu: 1
+              nvidia.com/gpu: null
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: argocd
