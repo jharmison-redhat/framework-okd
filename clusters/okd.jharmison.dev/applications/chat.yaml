@@ -28,6 +28,12 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
+      - RespectIgnoreDifferences=true
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/managed-by: argocd
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas
