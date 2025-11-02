@@ -10,7 +10,7 @@ spec:
     nodeLabellerImage: rocm/k8s-device-plugin:labeller-latest
   metricsExporter:
      enable: true
-     serviceType: "ClusterIp"
+     serviceType: "ClusterIP"
      image: docker.io/rocm/device-metrics-exporter:v1.4.0
   selector:
     {{- toYaml .Values.nodeSelector | nindent 4 }}
