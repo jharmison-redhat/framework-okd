@@ -1,0 +1,6 @@
+---
+kubelet:
+  master: {}
+  worker: {}
+
+desiredUpdate: {}

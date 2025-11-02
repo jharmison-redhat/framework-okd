@@ -1,0 +1,10 @@
+desiredUpdate:
+  version: 4.20.0-okd-scos.6
+
+kubelet:
+  master:
+    podPidsLimit: 512
+    containerLogMaxSize: 50Mi
+    maxPods: 500
+    kubeAPIBurst: 256
+    kubeAPIQPS: 128
