@@ -22,6 +22,11 @@ for disk in "${@}"; do
       echo "Already a PV"
     else
       echo "Wiping disk and creating a PV"
+      if chroot /host lsblk -no MOUNTPOINTS "$disk" | grep -qF '/'; then
+        echo "Error! $disk ($(chroot /host realpath $disk)) is mounted already!" >&2
+        chroot /host lsblk >&2
+        exit 1
+      fi
       chroot /host dd if=/dev/zero of="$disk" bs=1M count=5 conv=fsync
       chroot /host pvcreate "$disk"
     fi
