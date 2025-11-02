@@ -4,7 +4,7 @@ vllm:
     repository: hyoon11/vllm-dev
     tag: 20251031_20_py3.12_torch2.8_triton3.4_navi_upstream_5438967_ubuntu24.04_env
   configuration:
-    modelReference: RedHatAI/phi-4
+    modelReference: ibm-granite/granite-4.0-micro
     modelStorage:
       size: 40Gi
     env:
