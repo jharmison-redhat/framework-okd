@@ -14,7 +14,7 @@ spec:
   source:
     path: charts/chat
     repoURL: https://github.com/rh-aiservices-bu/vllm-quickstart
-    targetRevision: cee5a96d0ca65d9a9ab209253627905bcfaaf4b8
+    targetRevision: HEAD
     helm:
       values: |
         vllm:
