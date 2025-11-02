@@ -4,12 +4,11 @@ vllm:
     repository: hyoon11/vllm-dev
     tag: 20251031_20_py3.12_torch2.8_triton3.4_navi_upstream_5438967_ubuntu24.04_env
   configuration:
-    modelReference: RedHatAI/Mistral-Small-3.1-24B-Instruct-2503-quantized.w4a16
+    modelReference: RedHatAI/phi-4
     modelStorage:
       size: 40Gi
     env:
       TRITON_CACHE_DIR: /opt/app-root/src/.cache/triton
-      VLLM_USE_TRITON_FLASH_ATTN: "0"
   tolerations: []
   resources:
     limits:
