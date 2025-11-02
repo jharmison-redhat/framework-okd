@@ -15,6 +15,12 @@ spec:
     path: helm-charts-openshift
     repoURL: https://github.com/ROCm/gpu-operator
     targetRevision: 4863659a11495de990b62e4a1ba92ef27aa038fc
+    helm:
+      valuesObject:
+        controllerManager:
+          manager:
+            image:
+              tag: v1.4.0
   syncPolicy:
     automated:
       prune: true
