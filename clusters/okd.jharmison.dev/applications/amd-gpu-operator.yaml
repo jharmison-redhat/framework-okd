@@ -13,25 +13,18 @@ spec:
   project: default
   source:
     path: helm-charts-openshift
-    repoURL: https://github.com/jharmison-redhat/amd-gpu-operator
-    targetRevision: 215cd60e2c3d9ff93a76a34367fd611fbde4ebce
+    repoURL: https://github.com/ROCm/gpu-operator
+    targetRevision: 4863659a11495de990b62e4a1ba92ef27aa038fc
     helm:
       valuesObject:
         controllerManager:
           manager:
             image:
               tag: v1.4.0
-  ignoreDifferences:
-    - group: ""
-      kind: ConfigMap
-      name: amd-gpu-operator-kmm-cluster-ca
-      jsonPointers:
-        - /data
-    - group: ""
-      kind: ConfigMap
-      name: amd-gpu-operator-kmm-service-ca
-      jsonPointers:
-        - /data
+        kmm:
+          enabled: false
+        nfd:
+          enabled: false
   syncPolicy:
     automated:
       prune: true

@@ -1,0 +1,8 @@
+---
+apiVersion: v2
+name: amd-deviceconfig
+description: >
+  A simple chart to apply a basic deviceconfig for the AMD GPU operator
+type: application
+version: 0.1.0
+appVersion: 0.1.0

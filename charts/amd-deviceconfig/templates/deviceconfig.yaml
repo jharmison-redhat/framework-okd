@@ -1,0 +1,16 @@
+apiVersion: amd.com/v1alpha1
+kind: DeviceConfig
+metadata:
+  name: in-tree-config
+spec:
+  driver:
+    enable: false
+  devicePlugin:
+    devicePluginImage: rocm/k8s-device-plugin:latest
+    nodeLabellerImage: rocm/k8s-device-plugin:labeller-latest
+  metricsExporter:
+     enable: true
+     serviceType: "ClusterIp"
+     image: docker.io/rocm/device-metrics-exporter:v1.4.0
+  selector:
+    {{- toYaml .Values.nodeSelector | nindent 4 }}
