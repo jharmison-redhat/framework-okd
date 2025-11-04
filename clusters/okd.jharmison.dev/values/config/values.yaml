@@ -1,5 +1,5 @@
 desiredUpdate:
-  version: 4.20.0-okd-scos.6
+  version: 4.20.0-okd-scos.7
 
 kubelet:
   master:
