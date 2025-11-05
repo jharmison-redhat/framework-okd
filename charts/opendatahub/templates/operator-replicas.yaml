@@ -1,0 +1,9 @@
+{{- with .Values.replicas }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opendatahub-operator-controller-manager
+  namespace: openshift-operators
+spec:
+  replicas: {{ . }}
+{{- end }}

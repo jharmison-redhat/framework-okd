@@ -15,6 +15,9 @@ spec:
     path: charts/opendatahub
     repoURL: git@github.com:jharmison-redhat/framework-okd.git
     targetRevision: HEAD
+    helm:
+      valueFiles:
+        - ../../clusters/okd.jharmison.dev/values/opendatahub/values.yaml
   syncPolicy:
     automated:
       prune: true
