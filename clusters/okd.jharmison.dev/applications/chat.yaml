@@ -18,6 +18,7 @@ spec:
     helm:
       valueFiles:
         - $values/clusters/okd.jharmison.dev/values/chat/values.yaml
+        - secrets+age-import:///helm-secrets-private-keys/argo.txt?$values/clusters/okd.jharmison.dev/values/chat/secrets.enc.yaml
   - repoURL: git@github.com:jharmison-redhat/framework-okd.git
     targetRevision: HEAD
     ref: values
