@@ -101,6 +101,8 @@ spec:
       value: /custom-tools/sops
     - name: HELM_SECRETS_KUBECTL_PATH
       value: /custom-tools/kubectl
+    - name: HELM_SECRETS_AGE_PATH
+      value: /custom-tools/age
     - name: HELM_SECRETS_BACKEND
       value: sops
     - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
@@ -109,10 +111,14 @@ spec:
       value: 'true'
     - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL
       value: 'true'
+    - name: HELM_SECRETS_DECRYPT_SECRETS_IN_TMP_DIR
+      value: 'true'
     - name: HELM_SECRETS_WRAPPER_ENABLED
       value: 'true'
     - name: HELM_SECRETS_HELM_PATH
       value: /usr/local/bin/helm
+    - name: SOPS_AGE_KEY_FILE
+      value: /helm-secrets-private-keys/argo.txt
     initContainers:
     - name: download-tools
       image: registry.fedoraproject.org/fedora:43
@@ -124,13 +130,16 @@ spec:
         value: 3.11.0
       - name: KUBECTL_VERSION
         value: 1.33.5
+      - name: AGE_VERSION
+        value: "1.2.1"
       args:
       - |
         mkdir -p /custom-tools/helm-plugins
-        curl -Lo - https://github.com/jkroepke/helm-secrets/releases/download/v${HELM_SECRETS_VERSION}/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf- ;
+        curl -Lo - https://github.com/jkroepke/helm-secrets/releases/download/v${HELM_SECRETS_VERSION}/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-
         curl -Lo /custom-tools/curl https://github.com/moparisthebest/static-curl/releases/latest/download/curl-amd64
         curl -Lo /custom-tools/sops https://github.com/mozilla/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.amd64
         curl -Lo /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl
+        curl -Lo - https://github.com/FiloSottile/age/releases/download/v${AGE_VERSION}/age-v${AGE_VERSION}-linux-amd64.tar.gz | tar -C /custom-tools -xzf- --strip-components=1 age/age
         cp /custom-tools/helm-plugins/helm-secrets/scripts/wrapper/helm.sh /custom-tools/helm
         chmod +x /custom-tools/*
       volumeMounts:
