@@ -1,1 +1,55 @@
 catalogVersion: v3.0.0
+
+dscInitialization:
+  applicationsNamespace: opendatahub
+  monitoring:
+    managementState: Managed
+    namespace: opendatahub
+    metrics:
+      replicas: 1
+      resources:
+        cpulimit: 500m
+        cpurequest: 100m
+        memorylimit: 512Mi
+        memoryrequest: 256Mi
+      storage:
+        retention: 90d
+        size: 5Gi
+    traces:
+      storage:
+        backend: pv
+        size: 5Gi
+        retention: 2160h
+  trustedCABundle:
+    customCABundle: ''
+    managementState: Managed
+
+dsc:
+  create: true
+  components:
+    dashboard:
+      managementState: Managed
+    aipipelines:
+      managementState: Managed
+    kserve:
+      managementState: Managed
+      nim:
+        managementState: Removed
+      rawDeploymentServiceConfig: Headed
+    kueue:
+      managementState: Removed
+    modelregistry:
+      managementState: Managed
+      registriesNamespace: odh-model-registries
+    ray:
+      managementState: Removed
+    trainingoperator:
+      managementState: Managed
+    trustyai:
+      managementState: Managed
+    workbenches:
+      managementState: Managed
+    feastoperator:
+      managementState: Managed
+    llamastackoperator:
+      managementState: Managed
