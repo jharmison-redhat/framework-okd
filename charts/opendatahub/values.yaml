@@ -1,5 +1,8 @@
 catalogVersion: v3.0.0
 
+replicas: null # replicas of the ODH Operator pod (defaults to 3 on install)
+dashboardReplicas: null # replicas of the ODH Dashboard (defaults to 2 on install)
+
 dscInitialization:
   applicationsNamespace: opendatahub
   monitoring:
