@@ -44,6 +44,10 @@ tools:
 encrypt:
 	@hack/encrypt-chart-secrets.sh
 
+.PHONY: fix-argo
+fix-argo:
+	@KUBECONFIG=$(INSTALL_DIR)/auth/kubeconfig hack/fix-argo.sh
+
 .PHONY: clean
 clean:
 	rm -rf $(INSTALL_DIR)
