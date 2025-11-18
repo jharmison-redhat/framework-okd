@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: servicemeshoperator3
+  name: gateway-api
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
@@ -9,10 +9,10 @@ metadata:
 spec:
   destination:
     name: in-cluster
-    namespace: openshift-operators
+    namespace: openshift-ingress-operator
   project: default
   source:
-    path: charts/servicemeshoperator3
+    path: charts/gateway-api
     repoURL: git@github.com:jharmison-redhat/framework-okd.git
     targetRevision: HEAD
   syncPolicy:

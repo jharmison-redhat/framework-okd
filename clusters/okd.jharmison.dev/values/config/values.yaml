@@ -1,6 +1,13 @@
 desiredUpdate:
   image: quay.io/okd/scos-release@sha256:2237a02fc4d1554e655d3f4f7dd12c56109675dcf0c1189ef937941f8876257f
 
+overrides:
+  - group: apps
+    kind: Deployment
+    name: ingress-operator
+    namespace: openshift-ingress-operator
+    unmanaged: true
+
 kubelet:
   master:
     podPidsLimit: 512

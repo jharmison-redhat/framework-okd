@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-operator
+spec:
+  template:
+    spec:
+      containers:
+        - name: ingress-operator
+          env:
+            - name: GATEWAY_API_OPERATOR_CATALOG
+              value: {{ .Values.catalog }}
+            - name: GATEWAY_API_OPERATOR_CHANNEL
+              value: {{ .Values.channel }}
+            - name: GATEWAY_API_OPERATOR_VERSION
+              value: {{ .Values.startingCSV }}

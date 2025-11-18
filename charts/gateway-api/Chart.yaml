@@ -1,8 +1,9 @@
 ---
 apiVersion: v2
-name: servicemeshoperator3
+name: gateway-api
 description: >
   A helm chart to install and manage the OKDerators build of OpenShift Service Mesh 3
+  instead of the Red Hat build for the ingress controller
 type: application
 version: 0.1.0
 appVersion: 0.1.0
