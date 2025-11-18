@@ -14,3 +14,5 @@ spec:
               value: {{ .Values.channel }}
             - name: GATEWAY_API_OPERATOR_VERSION
               value: {{ .Values.startingCSV }}
+            - name: ISTIO_VERSION
+              value: {{ .Values.istioVersion }}
