@@ -1,0 +1,21 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: servicemeshoperator3
+spec:
+  channel: {{ .Values.channel }}
+  config:
+    annotations:
+      openshift.io/required-scc: restricted-v2
+      target.workload.openshift.io/management: '{"effect": "PreferredDuringScheduling"}'
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+  installPlanApproval: {{ .Values.installPlanApproval }}
+  name: servicemeshoperator3
+  source: okderators
+  sourceNamespace: openshift-marketplace
+  {{- with .Values.startingCSV }}
+  startingCSV: {{ . }}
+  {{- end }}

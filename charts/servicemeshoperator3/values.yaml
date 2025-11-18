@@ -1,0 +1,4 @@
+channel: alpha
+
+installPlanApproval: Manual
+startingCSV: servicemeshoperator3.v3.0.0-2025-07-08-135051
