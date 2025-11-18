@@ -1,5 +1,5 @@
 desiredUpdate:
-  image: quay.io/okd/scos-release@sha256:e8b568ac8f5bff34ae434c707d2dda2062859ff8cfb1e8a13103a4574644d45c
+  image: quay.io/okd/scos-release@sha256:2237a02fc4d1554e655d3f4f7dd12c56109675dcf0c1189ef937941f8876257f
 
 kubelet:
   master:
