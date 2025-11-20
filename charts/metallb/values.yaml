@@ -1,1 +1,9 @@
 channel: alpha
+
+myASN: 64502
+bgpPeers:
+  - name: harmroute
+    ASN: 64501
+    address: 10.1.1.1
+pools:
+  - 10.51.0.0/16

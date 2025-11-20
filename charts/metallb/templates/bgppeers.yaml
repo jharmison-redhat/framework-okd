@@ -1,0 +1,14 @@
+{{- range $peer := .Values.bgpPeers }}
+---
+apiVersion: metallb.io/v1beta2
+kind: BGPPeer
+metadata:
+  name: {{ $peer.name }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  myASN: {{ $.Values.myASN }}
+  peerASN: {{ $peer.ASN }}
+  peerAddress: {{ $peer.address }}
+{{- end }}
