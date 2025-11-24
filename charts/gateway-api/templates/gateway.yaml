@@ -7,8 +7,8 @@ metadata:
   namespace: openshift-ingress
 spec:
   gatewayClassName: openshift-default
-  {{- if .Values.redirectHttp }}
   listeners:
+  {{- if .Values.redirectHttp }}
   - name: http
     hostname: "*.{{ .Values.listenerWildcardDomain }}"
     port: 80
@@ -33,3 +33,23 @@ spec:
       group: ""
       kind: ConfigMap
       name: default-gw-options
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: default-gw-options
+  namespace: openshift-ingress
+data:
+  service: |
+    spec:
+      loadBalancerIP: {{ .Values.listenerIpAddress }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: default-openshift-default
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  namespace: openshift-ingress
+spec:
+  loadBalancerIP: {{ .Values.listenerIpAddress }}
