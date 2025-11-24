@@ -1,0 +1,35 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: default
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  namespace: openshift-ingress
+spec:
+  gatewayClassName: openshift-default
+  {{- if .Values.redirectHttp }}
+  listeners:
+  - name: http
+    hostname: "*.{{ .Values.listenerWildcardDomain }}"
+    port: 80
+    protocol: HTTP
+    allowedRoutes:
+      namespaces:
+        from: All
+  {{- end }}
+  - name: https
+    hostname: "*.{{ .Values.listenerWildcardDomain }}"
+    port: 443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - name: gwapi-wildcard
+    allowedRoutes:
+      namespaces:
+        from: All
+  infrastructure:
+    parametersRef:
+      group: ""
+      kind: ConfigMap
+      name: default-gw-options

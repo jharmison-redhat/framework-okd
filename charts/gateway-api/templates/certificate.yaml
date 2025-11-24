@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  annotations:
+  name: gwapi-wildcard
+  namespace: openshift-ingress
+spec:
+  dnsNames:
+  - {{ .Values.listenerWildcardDomain }}
+  - '*.{{ .Values.listenerWildcardDomain }}'
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: {{ .Values.listenerCertificateIssuer }}
+  secretName: gwapi-wildcard

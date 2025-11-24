@@ -2,3 +2,8 @@ catalog: okderators
 channel: alpha
 startingCSV: servicemeshoperator3.v3.0.0-2025-07-08-135051
 istioVersion: v1.24.6
+
+redirectHttp: true
+listenerWildcardDomain: jharmison.dev
+listenerIpAddress: 10.51.10.0
+listenerCertificateIssuer: letsencrypt
