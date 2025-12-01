@@ -27,3 +27,4 @@ spec:
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/managed-by: argocd
+        openshift.io/cluster-monitoring: "true"
