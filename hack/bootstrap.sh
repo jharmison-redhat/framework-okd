@@ -77,11 +77,12 @@ templated_variables=(
  \$base64_argo_age_txt
  \$base64_argo_git_url
  \$base64_argo_private_key
+ \$CLUSTER_URL
  \$CLUSTER_DIR
  \$ARGO_GIT_URL
 )
 vars=$(concat_with_comma "${templated_variables[@]}")
-for template in age-secret ssh-key app-of-apps; do
+for template in age-secret ssh-key app-of-apps consolelink; do
   envsubst "$vars" < "${bootstrap_dir}/templates/${template}.yaml.tpl" > "${bootstrap_dir}/${template}.yaml"
 done
 

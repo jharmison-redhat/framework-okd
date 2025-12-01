@@ -32,7 +32,7 @@ $(INSTALL_DIR)/age.txt:
 $(INSTALL_DIR)/id_ed25519:
 	@if [ -e $@ ]; then touch $@; else ssh-keygen -t ed25519 -f $(INSTALL_DIR)/id_ed25519 -N '' -C argocd@$(CLUSTER_NAME).$(BASE_DOMAIN); fi
 
-$(INSTALL_DIR)/bootstrap/kustomization.yaml: bootstrap/kustomization.yaml
+$(INSTALL_DIR)/bootstrap/kustomization.yaml: $(wildcard bootstrap/*.yaml) $(wildcard bootstrap/templates/*.yaml)
 	cp -r bootstrap $(INSTALL_DIR)/
 
 .PHONY: tools

@@ -6,9 +6,10 @@ commonLabels:
   cluster: okd.jharmison.dev
 
 resources:
-- subscription.yaml
-- namespace.yaml
-- ssh-key.yaml
-- age-secret.yaml
-- argocd.yaml
-- app-of-apps.yaml
+  - subscription.yaml
+  - namespace.yaml
+  - ssh-key.yaml
+  - age-secret.yaml
+  - argocd.yaml
+  - app-of-apps.yaml
+  - consolelink.yaml
