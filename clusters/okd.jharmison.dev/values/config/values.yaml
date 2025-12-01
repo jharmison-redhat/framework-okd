@@ -15,3 +15,6 @@ kubelet:
     maxPods: 500
     kubeAPIBurst: 256
     kubeAPIQPS: 128
+    systemReserved:
+      cpu: 2000m
+      memory: 2Gi
