@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # for downloads
-okd_version=4.20.0-okd-scos.6
+okd_version=4.20.0-okd-scos.11
 arch=x86_64
 
 # for install-config
