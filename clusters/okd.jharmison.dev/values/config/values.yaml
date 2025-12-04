@@ -1,5 +1,5 @@
 desiredUpdate:
-  image: quay.io/okd/release-scos@sha256:e01396cf9753a998af2a2cbb4897daab7cdd656f1fdfa779019933a180933910
+  image: quay.io/okd/scos-release@sha256:e01396cf9753a998af2a2cbb4897daab7cdd656f1fdfa779019933a180933910
 
 overrides:
   - group: apps
